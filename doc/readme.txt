@@ -22,3 +22,8 @@ Skeletal Animation Demo (Linux version)
   - arrow keys - move the camera
   - left mouse + mouse move - rotates the camera around its Y axis
   - right mouse + mouse move - rotates the camera around its X axis
+  - 'p' key - changes the shader program, possible programs:
+    PHONG, 
+    GUARD, 
+    SOLID COLOR, 
+    PHONG + BONE ANIMATION
