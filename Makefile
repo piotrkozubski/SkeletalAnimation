@@ -4,11 +4,11 @@ LIB_PARAMS= -Wl,--as-needed -g -Wl,--no-undefined -I$(FREEGLUT_INC_DIR) $(INC) -
 BIN_DIR=bin
 
 FREEGLUT_INC_DIR=lib/freeglut/include
-FREEGLUT_LIB_DIR=lib/freeglut/lib
+FREEGLUT_LIB_DIR=/usr/lib/i386-linux-gnu
 INC=-I./inc -I./src/
 
 CXX=g++
-CPPFLAGS=-Wall -pedantic -fno-exceptions -fno-rtti -mno-ms-bitfields -DGLM_FORCE_CXX98 -DGL_GLEXT_PROTOTYPES $(INC) -I$(FREEGLUT_INC_DIR) 
+CPPFLAGS=-g -O0 -Wall -pedantic -fno-exceptions -fno-rtti -mno-ms-bitfields -DGLM_FORCE_CXX98 -DGL_GLEXT_PROTOTYPES $(INC) -I$(FREEGLUT_INC_DIR) 
 CPP03FLAG= -std=gnu++03
 CPP17FLAG= -std=gnu++17
 
