@@ -90,6 +90,7 @@ void BoneKeyFrames::getFrame(uint8_t *pData, float pFactor)
 	if (pFactor > 1.0) pFactor = 1.0;
 	float frameFloat = pFactor * (mFramesNum - 1);
 	uint32_t frame = ceil(frameFloat);
+	float factor = 1.0 - (float(frame) - frameFloat);
 
 	Bone::Ptr* bl = mBoneList->mArray;
 	for (BoneID id = 0; id < mBoneList->mArraySize; ++id)
@@ -101,41 +102,38 @@ void BoneKeyFrames::getFrame(uint8_t *pData, float pFactor)
 	KeyFrameMapElement* element = &mMap->mArray[frame];
 
 	if (element->mKeyFrame.get() == NULL)
+	{
 		element = element->mNext;
+	}
 
 	FrameID endFrame = element->mKeyFrame->mArray[0]->frameId;
 
 	for (FrameID id = 0; id < element->mKeyFrame->mArraySize; ++id)
 	{
-		RawKeyFrame* rawFrame = element->mKeyFrame->mArray[id];
-		Matrix4x4f qMat(1.0);
-		// if frame is exactly key frame
-		// we don't have to interpolate, just take quaternion from raw frame
-		if (frame == endFrame)
-		{
-			Matrix::quatToMatrix4x4f(qMat, rawFrame->rotQuat);
-		}
-		else // if frame is not found among key frames, need to interpolate
-		{
-			Quat firstQuat = {0.0f, 0.0f, 0.0f, 1.0f};
+	    RawKeyFrame* rawFrame = element->mKeyFrame->mArray[id];
+	    Matrix4x4f qMat(1.0);
 
-			RawKeyFrame* prev = rawFrame->prevRawFrame;
-			FrameID firstFrame = element->mPrevoius->mKeyFrame->mArray[0]->frameId;
-			if (prev != NULL)
-			{
-				memcpy(firstQuat, prev->rotQuat, sizeof(firstQuat));
-				firstFrame = prev->frameId;
-			}
-			Quat secondQuat;
-			memcpy(secondQuat, rawFrame->rotQuat, sizeof(secondQuat));
+	    Quat firstQuat = {0.0f, 0.0f, 0.0f, 1.0f};
 
-			float factor = (frameFloat - firstFrame) / (endFrame - firstFrame);
+	    RawKeyFrame* prev = rawFrame->prevRawFrame;
+	    FrameID firstFrame = element->mPrevoius->mKeyFrame->mArray[0]->frameId;
+	    if (prev != NULL)
+	    {
+	        memcpy(firstQuat, prev->rotQuat, sizeof(firstQuat));
+	        firstFrame = prev->frameId;
+	    }
+	    else
+	    {
+	        LOG_ASSERT(false, "prev is NULL");
+	    }
+	    Quat secondQuat;
+	    memcpy(secondQuat, rawFrame->rotQuat, sizeof(secondQuat));
 
-			Matrix::quatInterpolateSlerp(qMat, firstQuat, secondQuat, factor);
-		}
+	    Matrix::quatInterpolateSlerp(qMat, firstQuat, secondQuat, factor);
 
-		Bone* b = mBoneList->mArray[rawFrame->boneId].get();
-		b->transform(qMat, b);
+
+	    Bone* b = mBoneList->mArray[rawFrame->boneId].get();
+	    b->transform(qMat, b);
 	}
 
 	for (BoneID id = 0; id < mBoneList->mArraySize; ++id)
