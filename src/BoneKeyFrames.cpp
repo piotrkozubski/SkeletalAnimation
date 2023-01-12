@@ -124,7 +124,7 @@ void BoneKeyFrames::getFrame(uint8_t *pData, float pFactor)
 	    }
 	    else
 	    {
-	        LOG_ASSERT(false, "prev is NULL");
+	        LOG_DET("prev is NULL");
 	    }
 	    Quat secondQuat;
 	    memcpy(secondQuat, rawFrame->rotQuat, sizeof(secondQuat));
