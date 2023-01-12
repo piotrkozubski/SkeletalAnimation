@@ -1,7 +1,7 @@
 /*
 * main.cpp
  *
- *  Created on: 11 paŸ 2014
+ *  Created on: 11 paï¿½ 2014
  *      Author: zokp
  */
 #include <stdint.h>
@@ -98,7 +98,7 @@ Options::Options 	gsOptions;
 
 //TEMP
 static float camRotX = 0, camRotY = 0;
-static float camTranX = 0.0f, camTranY = 0.0f, camTranZ = 0.0f;
+static float camTranX = 0.0f, camTranY = -10.0f, camTranZ = 0.0f;
 
 static float objRotX = 0, objRotY = 0, objRotZ = 0;
 static float gridTransY = 0.0f;
@@ -118,38 +118,14 @@ static void motionFunc(int x, int y);
 static void mouseFunc(int button, int state, int x, int y);
 static void mouseWheelFunc(int button, int dir, int x, int y);
 static Matrix4x4f& updateCamera(void);
+static void handleParams(int argc, char** argv);
 
 int main(int argc, char** argv)
 {
     using namespace GLSLPrograms;
     LOG_INF(APP_NAME);
 
-    gsOptions = Options::parseOptions(argc, argv);
-    if ((!gsOptions.meshFileName || ::strlen(gsOptions.meshFileName) <= 0) &&
-    	(!gsOptions.mapFileName || ::strlen(gsOptions.mapFileName)<= 0))
-    {
-        printf("Usage: %s [options]\n", argv[0]);
-        printf("options:\n");
-        printf("\t-m,--mesh file name\tfile name of polygon mesh to be read\n");
-        printf("\t--map file name\t\tfile name of polygon map to be read\n");
-        printf("\t--t1 file name\t\tfile name of texture 1 used for mapping a mesh\n");
-        printf("\t--t2 file name\t\tfile name of texture 2 used for mapping a mesh\n");
-        printf("\t--t3 file name\t\tfile name of texture 3 used for mapping a mesh\n");
-        printf("\t--t4 file name\t\tfile name of texture 4 used for mapping a mesh\n");
-        printf("\t-f,--fullscreen\t\tfull screen\n");
-        printf("\t-w,--width width\tscreen width\n");
-        printf("\t-h,--height height\tscreen height\n");
-        printf("\t-l,--wireframe\twire frame mode\n");
-        printf("\t--light \"x,y,z[x,y,z]\"\tdefines light(s) at position x,y,z\n\n");
-        printf("\t-s,speed of animation in milliseconds\n");
-        exit(0);
-    }
-
-    if (gsOptions.meshFileName && gsOptions.mapFileName)
-    {
-    	LOG_ERR("Cannot load mesh and map. Please load one file.");
-    	exit(0);
-    }
+    handleParams(argc, argv);
 
     //Controls::init();
 
@@ -237,6 +213,37 @@ int main(int argc, char** argv)
     glutMainLoop();
 
     return 0;
+}
+
+static void handleParams(int argc, char** argv)
+{
+    gsOptions = Options::parseOptions(argc, argv);
+    if ((!gsOptions.meshFileName || ::strlen(gsOptions.meshFileName) <= 0) &&
+            (!gsOptions.mapFileName || ::strlen(gsOptions.mapFileName)<= 0))
+        {
+            printf("Usage: %s [options]\n", argv[0]);
+            printf("options:\n");
+            printf("\t-m,--mesh file name\tfile name of polygon mesh to be read\n");
+            printf("\t--map file name\t\tfile name of polygon map to be read\n");
+            printf("\t--t1 file name\t\tfile name of texture 1 used for mapping a mesh\n");
+            printf("\t--t2 file name\t\tfile name of texture 2 used for mapping a mesh\n");
+            printf("\t--t3 file name\t\tfile name of texture 3 used for mapping a mesh\n");
+            printf("\t--t4 file name\t\tfile name of texture 4 used for mapping a mesh\n");
+            printf("\t-f,--fullscreen\t\tfull screen\n");
+            printf("\t-w,--width width\tscreen width\n");
+            printf("\t-h,--height height\tscreen height\n");
+            printf("\t-l,--wireframe\twire frame mode\n");
+            printf("\t--light \"x,y,z[x,y,z]\"\tdefines light(s) at position x,y,z\n\n");
+            printf("\t-s,speed of animation in milliseconds\n");
+            exit(0);
+        }
+
+    if (gsOptions.meshFileName && gsOptions.mapFileName)
+        {
+            LOG_ERR("Cannot load mesh and map. Please load one file.");
+            exit(0);
+        }
+
 }
 
 static void idle()
@@ -591,7 +598,7 @@ static Matrix4x4f& updateCamera(void)
 
     Matrix4x4f tran(1.0f);
     tran[3][0] = camTranX;
-    tran[3][1] = 0;
+    tran[3][1] = camTranY;
     tran[3][2] = camTranZ;
     camTranX = 0; camTranY = 0; camTranZ = 0;
 
