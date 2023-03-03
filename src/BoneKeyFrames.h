@@ -2,7 +2,6 @@
 #ifndef BONE_KEY_FRAMES_
 #define BONE_KEY_FRAMES_
 
-#include <auto_ptr.h>
 #include "Array.h"
 #include "Bone.h"
 
@@ -48,7 +47,7 @@ public:
 	/**
 	 * typedef of smart pointer to BonesFrame
 	 */
-	typedef std::auto_ptr<BoneKeyFrames> Ptr;
+	typedef std::unique_ptr<BoneKeyFrames> Ptr;
 
 	/**
 	 * Creates BoneKeyFrames object from bone list and raw key frames.
@@ -95,9 +94,9 @@ private:
 	 * @param pData		data of bones' key frames
 	 */
 	BoneKeyFrames(uint32_t 							pFramesNum,
-				  Array<Bone::Ptr>::Ptr 			pBoneList,
-				  Array<RawKeyFrame>::Ptr			pKeyFrames,
-				  Array<KeyFrameMapElement>::Ptr	pMap);
+				  Array<Bone::Ptr>::Ptr&& 			pBoneList,
+				  Array<RawKeyFrame>::Ptr&&			pKeyFrames,
+				  Array<KeyFrameMapElement>::Ptr&&	pMap);
 };
 
 #endif

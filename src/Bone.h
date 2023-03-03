@@ -8,7 +8,7 @@
 #ifndef BONE_H_
 #define BONE_H_
 
-#include <auto_ptr.h>
+#include <memory>
 #include "Logger.h"
 #include "Matrix.h"
 #include "Array.h"
@@ -27,7 +27,7 @@ public:
 	/**
 	 * typedef of smart pointer to Bone
 	 */
-	typedef std::auto_ptr<Bone>	Ptr;
+	typedef std::unique_ptr<Bone>	Ptr;
 
 	/**
 	 * Constructor

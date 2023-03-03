@@ -8,7 +8,7 @@
 #ifndef PMESH_H_
 #define PMESH_H_
 
-#include <auto_ptr.h>
+#include <memory>
 
 #include "BoneKeyFrames.h"
 #include "OGLPolygonMesh.h"
@@ -64,7 +64,7 @@ public:
 	/**
 	 * typedef of smart pointer to Pmesh
 	 */
-	typedef std::auto_ptr<Pmesh> Ptr;
+	typedef std::unique_ptr<Pmesh> Ptr;
 
 private:
 	OGLPolygonMesh::Ptr		mPolygonMesh;

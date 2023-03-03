@@ -66,7 +66,7 @@ public:
     /**
      * typedef of smart pointer to OGLPolygonMesh
      */
-    typedef std::auto_ptr<OGLPolygonMesh> Ptr;
+    typedef std::unique_ptr<OGLPolygonMesh> Ptr;
 
 private:
     GLuint      mVertexArray;

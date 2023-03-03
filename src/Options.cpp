@@ -1,7 +1,7 @@
 /*
  * Options.cpp
  *
- *  Created on: 27 paü 2014
+ *  Created on: 27.10.2014
  *      Author: zokp
  */
 #include <cstdlib>
@@ -10,8 +10,8 @@
 #include "Logger.h"
 #include "Options.h"
 
-static const uint32_t WIN_WIDTH  = 1280;
-static const uint32_t WIN_HEIGHT = 720;
+static const uint32_t WIN_WIDTH  = 2560;
+static const uint32_t WIN_HEIGHT = 1080;
 static const uint32_t ANIM_SPEED = 1000;
 
 Options::Options Options::parseOptions(int argc, char** argv)

@@ -130,10 +130,10 @@ Pmap::Pmap(Array<VertexPos>::Ptr& 	 pVertexPosList,
 		   Array<VertexUV>::Ptr& 	 pVertexUVList,
 		   Array< Face<3> >::Ptr&       pFaceList,
 		   Array<Normal>::Ptr&   pFaceNormalList) :
-		mVertexPosList(pVertexPosList),
-		mVertexUVList(pVertexUVList),
-		mFaceList(pFaceList),
-		mFaceNormalList(pFaceNormalList)
+		mVertexPosList(std::move(pVertexPosList)),
+		mVertexUVList(std::move(pVertexUVList)),
+		mFaceList(std::move(pFaceList)),
+		mFaceNormalList(std::move(pFaceNormalList))
 {
 	LOG_ASSERT(mVertexPosList.get() && mVertexPosList.get()->mArraySize, "Vertex Pos list is empty");
 	LOG_ASSERT(mVertexUVList.get() && mVertexUVList.get()->mArraySize, "Vertex UV list is empty");

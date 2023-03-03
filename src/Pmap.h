@@ -64,7 +64,7 @@ public:
 		return *mFaceNormalList.get();
 	}
 
-	typedef std::auto_ptr<Pmap> Ptr;
+	typedef std::unique_ptr<Pmap> Ptr;
 
 private:
 	Pmap(Array<VertexPos>::Ptr&  pVertexPosList,

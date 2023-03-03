@@ -81,7 +81,7 @@ public:
     /**
      *  typedef of smart pointer to OGLProgram
      */
-    typedef std::auto_ptr<OGLProgram> Ptr;
+    typedef std::unique_ptr<OGLProgram> Ptr;
 
 private:
 

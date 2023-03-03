@@ -61,7 +61,7 @@ public:
 	/**
 	 * typedef of smart pointer to OGLTexture
 	 */
-	 typedef std::auto_ptr<OGLTexture> Ptr;
+	 typedef std::unique_ptr<OGLTexture> Ptr;
 private:
 	 /**
 	  * ID of the texture

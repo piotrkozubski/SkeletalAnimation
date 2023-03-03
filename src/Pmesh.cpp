@@ -188,7 +188,7 @@ Pmesh* Pmesh::createFromFile(const char* pmeshFileName)
     		return NULL;
     	}
 
-    	boneKFrames = BoneKeyFrames::create(framesNum, boneList, keyFrames);
+    	boneKFrames = BoneKeyFrames::create(framesNum, std::move(boneList), std::move(keyFrames));
     	LOG_ASSERT(mesh,  "Cannot create BoneKeyFrames object!");
     }
 
@@ -198,10 +198,15 @@ Pmesh* Pmesh::createFromFile(const char* pmeshFileName)
 
 static bool readPMeshLine(std::ifstream& is, std::string& s)
 {
-	bool result = std::getline(is, s);
+	std::getline(is, s);
+	bool result = s.size();
 	if (result)
 	{
-		if (s.size() && s.at(0) == '#') result = std::getline(is, s);
+	    if (s.size() && s.at(0) == '#')
+	    {
+	        std::getline(is, s);
+	        result = s.size();
+	    }
 	}
 	return result;
 }

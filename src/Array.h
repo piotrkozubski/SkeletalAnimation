@@ -9,7 +9,7 @@
 #define ARRAY_H_
 
 #include <stdint.h>
-#include <auto_ptr.h>
+#include <memory>
 #include "Logger.h"
 
 /**
@@ -57,7 +57,7 @@ public:
 	/**
 	 * typedef of smart pointer to BonesFrame
 	 */
-	typedef std::auto_ptr<Array<T> > Ptr;
+	typedef std::unique_ptr<Array<T> > Ptr;
 };
 
 template <class T> Array<T>::Array(uint32_t pSize) :

@@ -14,7 +14,7 @@ Bone::Bone(const Matrix4x4f pMatrix, BoneID pParentIdx) :
 		mFramePoseMatrix(mPoseMatrix),
 		mModificationMatrix(1.0),
 		mParentIdx(pParentIdx),
-		mChildren(NULL)
+		mChildren()
 {
 	LOG_DEB("Bone created, parent index: " << mParentIdx <<
 			" matrix: " << Matrix::toString(mPoseMatrix))

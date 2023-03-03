@@ -1,7 +1,7 @@
 /*
  * Options.h
  *
- *  Created on: 27 paü 2014
+ *  Created on: 27.10.2014
  *      Author: zokp
  */
 

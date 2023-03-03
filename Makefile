@@ -9,24 +9,19 @@ INC=-I./inc -I./src/
 
 CXX=g++
 CPPFLAGS=-g -O0 -Wall -pedantic -fno-exceptions -fno-rtti -mno-ms-bitfields -DGLM_FORCE_CXX98 -DGL_GLEXT_PROTOTYPES $(INC) -I$(FREEGLUT_INC_DIR) 
-CPP03FLAG= -std=gnu++03
-CPP17FLAG= -std=gnu++17
+CPP20FLAG= -std=c++20
 
-srcfiles03 := main.cpp Logger.cpp OGLUtils.cpp Options.cpp OGLPolygonMesh.cpp OGLFunctions.cpp OGLProgram.cpp OGLShader.cpp GLSLPrograms.cpp OGLTexture.cpp Controls.cpp BMP.cpp OGLProgramUniformsSuite.cpp GridMesh.cpp Pmesh.cpp Pmap.cpp Bone.cpp BoneKeyFrames.cpp OGLBuffer.cpp ParseUtils.cpp BSPTree.cpp PolygonMesh.cpp Math3d.cpp
-objects03  := $(patsubst %.cpp, %.o, $(srcfiles03))
+srcfiles20 := main.cpp Logger.cpp OGLUtils.cpp Options.cpp OGLPolygonMesh.cpp OGLFunctions.cpp OGLProgram.cpp OGLShader.cpp GLSLPrograms.cpp OGLTexture.cpp Controls.cpp BMP.cpp OGLProgramUniformsSuite.cpp GridMesh.cpp Pmesh.cpp Pmap.cpp Bone.cpp BoneKeyFrames.cpp OGLBuffer.cpp ParseUtils.cpp BSPTree.cpp PolygonMesh.cpp Math3d.cpp Matrix.cpp TickCount.cpp
+objects20  := $(patsubst %.cpp, %.o, $(srcfiles20))
 
-srcfiles17 := Matrix.cpp TickCount.cpp
-objects17  := $(patsubst %.cpp, %.o, $(srcfiles17))
-
-objects := $(objects03) $(objects17)
+objects := $(objects20)
 
 all: bin demo
 
 demo: $(objects)
 	$(CXX) $(addprefix $(BIN_DIR)/,$^) $(LIB) $(LIB_PARAMS) -o $(BIN_DIR)/demo.linux
     
-$(objects03): CXXFLAGS := $(CPP03FLAG)
-$(objects17): CXXFLAGS := $(CPP17FLAG)
+$(objects20): CXXFLAGS := $(CPP20FLAG)
     
 $(objects): %.o: $(SRC)/%.cpp
 	$(CXX) -c $(CPPFLAGS) $(CXXFLAGS) $< -o $(BIN_DIR)/$@

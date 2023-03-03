@@ -45,18 +45,18 @@ BoneKeyFrames* BoneKeyFrames::create(
 	Array<KeyFrameMapElement>::Ptr map(new Array<KeyFrameMapElement>(pFramesNum));
 	fillKeyFrameMap(*pBoneList.get(), *map.get(), *pKeyFrames.get(), pFramesNum);
 
-	return new BoneKeyFrames(pFramesNum, pBoneList, pKeyFrames, map);
+	return new BoneKeyFrames(pFramesNum, std::move(pBoneList), std::move(pKeyFrames), std::move(map));
 }
 
 BoneKeyFrames::BoneKeyFrames(
-					uint32_t 						pFramesNum,
-					Array<Bone::Ptr>::Ptr 			pBoneList,
-					Array<RawKeyFrame>::Ptr			pKeyFrames,
-					Array<KeyFrameMapElement>::Ptr	pMap) :
+					uint32_t 						    pFramesNum,
+					Array<Bone::Ptr>::Ptr&& 			pBoneList,
+					Array<RawKeyFrame>::Ptr&&			pKeyFrames,
+					Array<KeyFrameMapElement>::Ptr&&	pMap) :
 		mFramesNum(pFramesNum),
-		mBoneList(pBoneList),
-		mKeyFrames(pKeyFrames),
-		mMap(pMap)
+		mBoneList(std::move(pBoneList)),
+		mKeyFrames(std::move(pKeyFrames)),
+		mMap(std::move(pMap))
 {
 	LOG_ASSERT(mFramesNum, 		 "mFramesNum not set");
 	LOG_ASSERT(mBoneList.get(),  "mBoneList not set");

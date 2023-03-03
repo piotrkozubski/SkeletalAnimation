@@ -1,7 +1,7 @@
 /*
  * Logger.h
  *
- *  Created on: 11 paü 2014
+ *  Created on: 11.10.2014
  *      Author: zokp
  */
 

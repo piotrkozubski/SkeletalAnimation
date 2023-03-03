@@ -67,7 +67,7 @@ public:
     /**
      *  typedef of smart pointer to OGLShader
      */
-    typedef std::auto_ptr<OGLShader> Ptr;
+    typedef std::unique_ptr<OGLShader> Ptr;
 
 private:
     GLuint mShaderId;

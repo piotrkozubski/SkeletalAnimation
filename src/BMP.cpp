@@ -60,7 +60,7 @@ static bool validateBMPHeader(const BMPHeader &h);
 
 uint32_t BMP::readBMPFile(
 			const char* pBmpFileName,
-			std::auto_ptr<uint8_t>& pPixelsData,
+			std::unique_ptr<uint8_t>& pPixelsData,
 			uint32_t& pWidth,
 			uint32_t& pHeight,
 			bool& pIsAlpha)

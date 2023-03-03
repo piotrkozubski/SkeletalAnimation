@@ -9,7 +9,7 @@
 #include <cstring>
 #include <stdio.h>
 #include <unistd.h>
-#include <auto_ptr.h>
+#include <memory>
 
 #include "Logger.h"
 #include "OGLUtils.h"
@@ -42,7 +42,7 @@ static const uint32_t OGL_VER_MINOR = 4;
 static Pmesh::Ptr gsPmeshForLoad;
 static OGLPolygonMesh* gsPolygonMesh;
 static BoneKeyFrames*  gsBoneKeyFrames;
-static std::auto_ptr<uint8_t> gsBonesFrameData;
+static std::unique_ptr<uint8_t> gsBonesFrameData;
 static OGLPolygonMesh::Ptr gsGridMesh;
 
 static Pmap::Ptr gsPmap;
@@ -501,19 +501,19 @@ static void initUniforms(void)
 	static GLint textureUnit = 0;
 
 	// PHONG SHADER PROGRAM
-	static auto_ptr<OGLProgramUniformsSuite>
+	static unique_ptr<OGLProgramUniformsSuite>
 		phongUnfAPTR(getUniformsSuite(GLSLPR_PHONG_LIGHTING));
 
 	// GUARD SHADER PROGRAM
-		static auto_ptr<OGLProgramUniformsSuite>
+		static unique_ptr<OGLProgramUniformsSuite>
 			guardUnfAPTR(getUniformsSuite(GLSLPR_GUARD_LIGHTING));
 
 	// COLOR SHADER PROGRAM
-	static auto_ptr<OGLProgramUniformsSuite>
+	static unique_ptr<OGLProgramUniformsSuite>
 		colorUnfAPTR(getUniformsSuite(GLSLPR_COLOR));
 
 	// PHONG-BONES SHADER PROGRAM
-	static auto_ptr<OGLProgramUniformsSuite>
+	static unique_ptr<OGLProgramUniformsSuite>
 		phongBonesUnfAPTR(getUniformsSuite(GLSLPR_PHONG_LIGHTING_BONE_ANIM));
 
 	setIdentityMatrix4x4f(gsLightingModelMat);

@@ -61,7 +61,7 @@ OGLTexture* OGLTexture::create(const uint8_t* pPixelData,
 
 OGLTexture* OGLTexture::createFromBMP(const char* pBmpFileName)
 {
-	std::auto_ptr<uint8_t> pixelData;
+	std::unique_ptr<uint8_t> pixelData;
 	uint32_t width;
 	uint32_t height;
 	bool isAlpha;
