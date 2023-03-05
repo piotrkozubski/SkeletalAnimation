@@ -26,7 +26,6 @@ void Logger::log(const Level level, const char* file, const int line,
 		const char* function, const std::stringstream& sstream)
 {
 	timeb tp;
-	ftime(&tp);
 	tm* now = localtime(&tp.time);
 	std::ostringstream oss;
 	oss << line;

@@ -7,6 +7,8 @@
 #include "PolygonMesh.h"
 #include <cstring>
 
+static void temporatyFunc(void) __attribute__((unused));
+
 template <uint32_t size>
 void PolygonMesh<size>::setVertexPos(const Array<VertexPos>& pVertexPos)
 {

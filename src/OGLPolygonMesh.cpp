@@ -11,6 +11,8 @@
 #include "OGLProgramAttrib.h"
 #include "Logger.h"
 
+static void temporaryFunc(void) __attribute__((unused));
+
 template <OGLPolygonMesh::Type type>
 OGLPolygonMesh* OGLPolygonMesh::create(const PolygonMesh<type>& pPolygonMesh, uint8_t pBonesPerVertex)
 {
@@ -91,7 +93,7 @@ OGLPolygonMesh* OGLPolygonMesh::create(const PolygonMesh<type>& pPolygonMesh, ui
 				GL_FLOAT,
 				GL_FALSE,
 				0,
-				(const GLvoid* )(sizeOfPos));
+				reinterpret_cast<const GLvoid*>(sizeOfPos));
     	LOG_DEB("Normals loading error status: " << glGetError());
     	glEnableVertexAttribArray(OGLProgramAttrib::ATTRIBIDX_VERTNORM);
     	LOG_DEB("Normals loading error status: " << glGetError());

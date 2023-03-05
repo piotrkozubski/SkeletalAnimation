@@ -106,7 +106,8 @@ void BoneKeyFrames::getFrame(uint8_t *pData, float pFactor)
 		element = element->mNext;
 	}
 
-	FrameID endFrame = element->mKeyFrame->mArray[0]->frameId;
+	// endFrame commented out, but left in case maybe used
+	//FrameID endFrame = element->mKeyFrame->mArray[0]->frameId;
 
 	for (FrameID id = 0; id < element->mKeyFrame->mArraySize; ++id)
 	{
@@ -116,11 +117,15 @@ void BoneKeyFrames::getFrame(uint8_t *pData, float pFactor)
 	    Quat firstQuat = {0.0f, 0.0f, 0.0f, 1.0f};
 
 	    RawKeyFrame* prev = rawFrame->prevRawFrame;
-	    FrameID firstFrame = element->mPrevoius->mKeyFrame->mArray[0]->frameId;
+
+	    // firstFrame commented out, but left in case maybe used
+	    //FrameID firstFrame = element->mPrevoius->mKeyFrame->mArray[0]->frameId;
 	    if (prev != NULL)
 	    {
 	        memcpy(firstQuat, prev->rotQuat, sizeof(firstQuat));
-	        firstFrame = prev->frameId;
+
+	        // firstFrame commented out, but left in case maybe used
+	        //firstFrame = prev->frameId;
 	    }
 	    else
 	    {
