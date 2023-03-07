@@ -12,6 +12,8 @@
 #include <ctime>
 #include <cstdio>
 #include <sys/timeb.h>
+#include <sys/time.h>
+#include <time.h>
 
 static const int WIDTH_LEVEL = 5;
 static const int WIDTH_FILE  = 24;
@@ -25,8 +27,13 @@ static const char* LevelToStr(const Logger::Level level);
 void Logger::log(const Level level, const char* file, const int line,
 		const char* function, const std::stringstream& sstream)
 {
-	timeb tp;
-	tm* now = localtime(&tp.time);
+	timeval tv;
+	time_t currTime;
+
+	gettimeofday(&tv, NULL);
+	currTime = tv.tv_sec;
+
+	tm* now = localtime(&currTime);
 	std::ostringstream oss;
 	oss << line;
 	std::string levelString(LevelToStr(level));
@@ -37,7 +44,7 @@ void Logger::log(const Level level, const char* file, const int line,
 	    << std::setw(2) << now->tm_hour << ":"
 	    << std::setw(2) << now->tm_min << ":"
 	    << std::setw(2) << now->tm_sec << ":"
-		<< std::setw(3) << tp.millitm << " | "
+		<< std::setw(3) << tv.tv_usec << " | "
 	    << std::setfill(' ') << std::left
 	    << std::setw(WIDTH_LEVEL) << levelString.substr(0, WIDTH_LEVEL) << " | "
 	    << std::setw(WIDTH_FILE) << fileString.substr(0, WIDTH_FILE) << " | "
