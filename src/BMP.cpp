@@ -15,10 +15,10 @@ using namespace std;
 const uint8_t BITMAPV5HEADER_SIZE = 124;
 
 //supported BMP parameters
-const uint32_t SUPPORTED_RED_MASK = 		0xFF000000;
-const uint32_t SUPPORTED_GREEN_MASK = 		0x00FF0000;
-const uint32_t SUPPORTED_BLUE_MASK = 		0x0000FF00;
-const uint32_t SUPPORTED_ALPHA_MASK = 		0x000000FF;
+const uint32_t SUPPORTED_RED_MASK = 		0x00FF0000;
+const uint32_t SUPPORTED_GREEN_MASK = 		0x0000FF00;
+const uint32_t SUPPORTED_BLUE_MASK = 		0x000000FF;
+const uint32_t SUPPORTED_ALPHA_MASK = 		0xFF000000;
 const uint32_t SUPPORTED_BPP = 				32;
 const uint32_t SUPPORTED_COMPRESSION_TYPE = 0x3;
 

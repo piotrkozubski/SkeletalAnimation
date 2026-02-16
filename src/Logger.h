@@ -19,7 +19,7 @@
 }
 #define LOG_INF(sstream) LOG(Logger::LOG_INFO, sstream);
 #define LOG_DET(sstream) LOG(Logger::LOG_DETAIL, sstream);
-#define LOG_DEB(sstream) //LOG(Logger::LOG_DEBUG, sstream);
+#define LOG_DEB(sstream) // LOG(Logger::LOG_DEBUG, sstream);
 #define LOG_WAR(sstream) LOG(Logger::LOG_WARNING, sstream);
 #define LOG_ERR(sstream) LOG(Logger::LOG_ERROR, sstream);
 

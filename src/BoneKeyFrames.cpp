@@ -207,6 +207,7 @@ static void fillKeyFrameMap(Array<Bone::Ptr>& pBoneList,
 	do
 	{
 		FrameID nextFrame = stl_map_it->first;
+//LOG_INF("reqriting beginFrameId = " << beginFrameID << " nextFrame = " << nextFrame);
 		for (FrameID mapID = beginFrameID; mapID < nextFrame; ++mapID)
 		{
 			pMap.mArray[mapID].mNext = &pMap.mArray[nextFrame];

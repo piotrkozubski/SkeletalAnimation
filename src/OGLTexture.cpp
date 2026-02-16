@@ -48,9 +48,9 @@ OGLTexture* OGLTexture::create(const uint8_t* pPixelData,
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, pIsAlpha ? GL_RGBA : GL_RGB,
-				 pWidth, pHeight, 0, pIsAlpha ? GL_RGBA : GL_RGB,
-				 GL_UNSIGNED_INT_8_8_8_8, pPixelData);
+	glTexImage2D(GL_TEXTURE_2D, 0, pIsAlpha ? GL_RGBA8 : GL_RGB,
+				 pWidth, pHeight, 0, pIsAlpha ? GL_BGRA : GL_RGB,
+			     GL_UNSIGNED_BYTE, pPixelData);
 
 //	glGenerateMipmap(GL_TEXTURE_2D);
 

@@ -19,7 +19,7 @@ static const int WIDTH_LEVEL = 5;
 static const int WIDTH_FILE  = 24;
 static const int WIDTH_LINE  = 6;
 static const int WIDTH_FUNC  = 20;
-static const int WIDTH_STR 	 = 300;
+static const int WIDTH_STR 	 = 100;
 
 static const char* LevelToStr(const Logger::Level level);
 
