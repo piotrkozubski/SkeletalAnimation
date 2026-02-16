@@ -4,12 +4,12 @@ Skeletal Animation Demo (Linux version)
   Application demonstrates rendering and animation of 3d skeletal meshes.
   Uses:
   - G++ supporting std C++ 17 - tested on 9.3.0
-  - OpenGL, GLU libraries installed on OS
+  - OpenGL, glu and freeglut libraries installed in OS
 
 3. Building:
    $ make
    
-   ./bin/demo.linux should be build
+   ./bin/demo.linux will be built
 
 4. Running
   Launch to get the help:
